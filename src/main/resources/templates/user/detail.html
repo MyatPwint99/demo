@@ -3,17 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <title>User Detail</title>
+    <link th:href="@{/reset/style.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/css/style.css}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
       <h1>User Detail</h1>
-      <div th:each="user : ${userlists}">
-             User Name : <span th:text="${user.userName}"></span><br>
-             Phone Number : <span th:text="${user.phoneNumber}"></span><br>
-             Gender : <span th:text="${user.gender}"></span><br>
-             Married : <span th:text="${user.married}"></span><br>
-             City : <span th:text="${user.city}"></span><br>
-          <hr>
-      </div>
-        <a th:href="@{/user/create}">Register Page</a>
+<!--      <div th:each="user : ${userlists}">-->
+<!--             User Name : <span th:text="${user.username}"></span><br>-->
+<!--             Phone Number : <span th:text="${user.phonenumber}"></span><br>-->
+<!--             Gender : <span th:text="${user.gender}"></span><br>-->
+<!--             Married Status : <td style="white-space: nowrap">-->
+<!--                            <span th:class="${user.married}? 'true' : 'false'"-->
+<!--                             th:text="${user.married}? 'Married' : 'Single'">-->
+<!--                            </span>-->
+<!--                        </td><br/>-->
+<!--&lt;!&ndash;             Married : <span th:text="${user.married}"></span><br/>&ndash;&gt;-->
+<!--             City : <span th:text="${user.city}"></span><br>-->
+<!--          <hr>-->
+<!--      </div>-->
+        <a class="btn btn-primary" th:href="@{/user/create}">Register Page</a>
+      <table class="table table-striped">
+          <thead>
+          <tr>
+              <th>User Name</th>
+              <th>Phone Number</th>
+              <th>Gender</th>
+              <th>Married Status</th>
+              <th>City</th>
+              <th> Action </th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr th:if="${userlists.empty}">
+              <td colspan="2"> No Person Available </td>
+          </tr>
+          <tr th:each="user : ${userlists}">
+              <td><span th:text="${user.username}"></span></td>
+              <td><span th:text="${user.phonenumber}"></span></td>
+              <td><span th:text="${user.gender}"></span></td>
+              <td> <div style="white-space: nowrap">
+                            <span th:class="${user.married}? 'true' : 'false'"
+                                  th:text="${user.married}? 'Married' : 'Single'">
+                            </span>
+                    </div>
+              </td>
+              <td><span th:text="${user.city}"></span></td>
+              <td>
+                  <a class="btn btn-primary" th:href="@{/user/edit/{id}(id=${user.id})}">Update</a>
+                  <a class="btn btn-danger" th:href="@{/user/delete/{id}(id=${user.id})}">Delete</a>
+              </td>
+          </tr>
+          </tbody>
+      </table>
 </body>
 </html>

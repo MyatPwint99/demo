@@ -80,8 +80,8 @@ public class HomeController {
     @PostMapping("/user/create")
     public String registerUser(@ModelAttribute MyUser user, Model model){
 
-        System.out.println("User Name ---->"+user.getUserName());
-        System.out.println("User Phone Number ---->"+user.getPhoneNumber());
+        System.out.println("User Name ---->"+user.getUsername());
+        System.out.println("User Phone Number ---->"+user.getPhonenumber());
         System.out.println("Married ---->"+user.getMarried());
 
 //        userlists.add(registerUserForm);
@@ -99,6 +99,7 @@ public class HomeController {
 
         myUserRepository.save(user);
 
+        model.addAttribute("userlists",myUserRepository.findAll());
         return "user/detail";
     }
 //    @GetMapping("/user/profile/{userId}")
@@ -136,16 +137,17 @@ public class HomeController {
     @PostMapping("/user/edit")
     public String editUser(@ModelAttribute MyUser user, Model model){
         myUserRepository.save(user);
+        model.addAttribute("userlists",myUserRepository.findAll());
         return "user/profile";
 
     }
     @GetMapping("/user/delete/{userId}")
-    public String deleteUser(@PathVariable Long userId){
+    public String deleteUser(Model model,@PathVariable Long userId){
 //        myUserRepository.deleteById(userId);
 
         var user = myUserRepository.findById(userId).get();
         myUserRepository.delete(user);
-
+        model.addAttribute("userlists",myUserRepository.findAll());
         return "user/profile";
     }
 

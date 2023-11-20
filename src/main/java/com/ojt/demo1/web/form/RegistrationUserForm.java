@@ -4,11 +4,11 @@ import lombok.Data;
 
 @Data
 public class RegistrationUserForm {
-    private String userName;
-    private Integer phoneNumber;
+    private String username;
+    private String phonenumber;
 //    private int gender;
     private String gender;
 //    private boolean married;
-    private String married;
+    private Boolean married;
     private String city;
 }

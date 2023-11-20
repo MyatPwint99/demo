@@ -12,9 +12,9 @@ public class MyUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
-    String userName;
-    Integer phoneNumber;
+    String username;
+    String phonenumber;
     String gender;
-    String married;
+    Boolean married;
     String city;
 }

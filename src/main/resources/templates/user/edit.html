@@ -11,10 +11,10 @@
         <input type="text" th:field="*{id}" readonly/><br/>
 
         <label>User name:</label>
-        <input type="text" th:field="*{userName}" /><br/>
+        <input type="text" th:field="*{username}" /><br/>
 
         <label>Phone Number:</label>
-        <input type="number" th:field="${user.phoneNumber}" /><br/>
+        <input type="number" th:field="${user.phonenumber}" /><br/>
 
         <label>Gender:</label>
         <input type="radio" th:field="*{gender}" value="Male" />Male
@@ -25,14 +25,16 @@
             <option th:each="c : ${cities}" th:value="${c}" th:text="${c}" />
         </select>
         <br/>
-
+        <label>
+            Married ? <input type="checkbox" th:field="*{married}"/><br/>
+        </label>
         <!--        <label>Married?</label>-->
         <!--        <input type="checkbox" th:field="*{married}" /><br/>-->
-        <label>Married : </label>
-        <input type="radio" th:field="*{married}" value="Married" />Married
-        <input type="radio" th:field="*{married}" value="Single" />Single<br/>
+<!--        <label>Married : </label>-->
+<!--        <input type="radio" th:field="*{married}" value="Married" />Married-->
+<!--        <input type="radio" th:field="*{married}" value="Single" />Single<br/>-->
 
-        <button type="submit">Edit</button>
+        <button class="btn btn-primary" type="submit">Edit</button>
     </form>
 </body>
 </html>
